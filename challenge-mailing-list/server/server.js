@@ -51,3 +51,12 @@ app
       res.send(people);
     }
   });
+
+app.get("/lists/:name/members", (req, res) => {
+  const reqName = req.params.name;
+  const person = people.find((person) => person.name === reqName);
+
+  if (person) {
+    res.send(person.members);
+  } else res.status(404).send("not availble");
+});
